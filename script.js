@@ -1,9 +1,9 @@
 let overlay = document.querySelector('.overlay');
 let container = document.querySelector('.container');
 let cardTemplate = document.querySelector('.card.hidden');
-let addButton = document.querySelector('.add-btn');
-let readButton = document.queryCommandIndeterm('.read-btn')
+let addBtn = document.querySelector('.add-btn');
 let library = [];
+let currentBookID = 0;
 
 init();
 
@@ -11,13 +11,10 @@ function init() {
     let form = document.querySelector('form');
     form.addEventListener('click', e => e.stopPropagation());
     overlay.addEventListener('click', closeForm);
-
-    readButton.addEventListener('click', e => {
-        console.log(e);
-    });
 }
 
 function Book(title, author, pages, read) {
+    this.bookID = currentBookID++;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -35,15 +32,41 @@ function appendBook(book) {
     let author = newCard.querySelector('.author');
     let pages = newCard.querySelector('.pages');
     let read = newCard.querySelector('button');
+    let del = newCard.querySelector('.delete');
 
     title.textContent = book.title;
     author.textContent = book.author;
-    pages.textContent = book.pages + " pages";
-    if(book.read) read.classList.add('true');
-    else read.textContent = "Not read";
+    pages.textContent = book.pages + 
+                        ((book.pages != 1) ?
+                            ' pages' : ' page');
+
+    if(book.read) toggleRead(read);
+    read.id = book.bookID;
+
+    read.addEventListener('click', e => toggleRead(e.target));
+    del.addEventListener('click', e => deleteCard(e.target));
 
     newCard.classList.remove('hidden');
     container.appendChild(newCard);
+}
+
+function toggleRead(button) {
+    let book = library.find(book => book.bookID == button.id)
+
+    if(book.read) {
+        button.classList.remove('true');
+        button.textContent = 'Not read';
+    }
+    else {
+        button.classList.add('true');
+        button.textContent = 'Read';
+    }
+
+    book.read = !book.read;
+}
+
+function deleteCard(button) {
+    button.parentElement.parentElement.remove();
 }
 
 function submitForm() {
@@ -75,7 +98,8 @@ function refreshBooks() {
 }
 
 function removeAllChild(container) {
-    while (container.lastElementChild != addButton) {
+    while (container.lastElementChild != addBtn
+    ) {
         container.removeChild(container.lastElementChild);
     }
 }

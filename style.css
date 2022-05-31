@@ -41,9 +41,9 @@ button {
     flex: 1;
 }
 .read-btn {
-    background-image: linear-gradient(to right, rgb(0,0,0,0), rgb(0,0,0,0));
+    background-image: none;
     background-color: var(--faint-col);
-    transition: 0.2s;
+    transition: 0.5s;
 }
 .read-btn.true {
     background-image: linear-gradient(to right, var(--theme-col-a) , var(--theme-col-b));
