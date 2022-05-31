@@ -40,7 +40,7 @@ function appendBook(book) {
                         ((book.pages != 1) ?
                             ' pages' : ' page');
 
-    if(book.read) toggleRead(read);
+    if(book.read) readBook(read);
     read.id = book.bookID;
 
     read.addEventListener('click', e => toggleRead(e.target));
@@ -53,16 +53,20 @@ function appendBook(book) {
 function toggleRead(button) {
     let book = library.find(book => book.bookID == button.id)
 
-    if(book.read) {
-        button.classList.remove('true');
-        button.textContent = 'Not read';
-    }
-    else {
-        button.classList.add('true');
-        button.textContent = 'Read';
-    }
+    if(book.read) unreadBook(button);
+    else readBook(button);
 
     book.read = !book.read;
+}
+
+function unreadBook(button) {
+    button.classList.remove('true');
+    button.textContent = 'Not read';
+}
+
+function readBook(button) {
+    button.classList.add('true');
+    button.textContent = 'Read';
 }
 
 function deleteCard(button) {
