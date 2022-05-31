@@ -10,11 +10,44 @@
 </head>
 <body>
     <div class="site">
-        <div class="header">Library</div>
-        <div class="body">
-            <div class="add-button">+</div>
+        <h1>Library</h1>
+        <div class="container">
+            <div onclick="openForm();" class="add-button">+</div>
         </div>
-        <div class="footer">Xav 2022</div>
+        <div class="card hidden">
+            <h2 class="title">Title</h2>
+            <h3 class="author">Author</h3>
+            <div class="pages">Pages</div>
+            <div class="buttons">
+                <button>Read</button>
+                <img class="delete" src="img/delete.png" alt="delete icon">
+            </div>
+        </div>
+        <div class="overlay hidden">
+            <form name="newbook">
+                <img class="close" src="img/X.png" alt="x symbol">
+                <h2>New Book</h2>
+                <label for="title">
+                    <div>Title</div>
+                    <input type="text" name="title" id="title" required>
+                </label>
+                <label for="author">
+                    <div>Author</div>
+                    <input type="text" name="author" id="author" required>
+                </label>
+                <label for="numpg">
+                    <div># of Pages</div>
+                    <input type="number" name="numpg" id="numpg" min="1" required>
+                </label>
+                <label for="read" class="read-switch">
+                    <input type="checkbox" name="read" id="read">
+                    <div class="switch"></div>
+                    <span>Already Read</span>
+                </label>
+                <button type="button" onclick="submitForm();">Submit</button>
+            </form>
+        </div>
+        <div class="footer">XavXS 2022</div>
     </div>
 </body>
 </html>
