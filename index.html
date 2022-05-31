@@ -12,20 +12,20 @@
     <div class="site">
         <h1>Library</h1>
         <div class="container">
-            <div onclick="openForm();" class="add-button">+</div>
+            <div onclick="openForm();" class="add-btn">+</div>
         </div>
         <div class="card hidden">
             <h2 class="title">Title</h2>
             <h3 class="author">Author</h3>
             <div class="pages">Pages</div>
             <div class="buttons">
-                <button>Read</button>
+                <button class="read-btn">Read</button>
                 <img class="delete" src="img/delete.png" alt="delete icon">
             </div>
         </div>
         <div class="overlay hidden">
             <form name="newbook">
-                <img class="close" src="img/X.png" alt="x symbol">
+                <img class="close" src="img/X.png" alt="x symbol" onclick="closeForm();">
                 <h2>New Book</h2>
                 <label for="title">
                     <div>Title</div>
@@ -37,7 +37,7 @@
                 </label>
                 <label for="numpg">
                     <div># of Pages</div>
-                    <input type="number" name="numpg" id="numpg" min="1" required>
+                    <input type="number" name="numpg" id="numpg" min="1" max="99999" required>
                 </label>
                 <label for="read" class="read-switch">
                     <input type="checkbox" name="read" id="read">

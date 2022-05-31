@@ -4,14 +4,10 @@
     --card-h: 300px;
     --theme-col-a: rgb(226, 156, 213);
     --theme-col-b: rgb(143, 217, 207);
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number] {
-  -moz-appearance: textfield;
+    --element-col: white;
+    --title-col: rgb(74, 74, 74);
+    --desc-col: gray;
+    --faint-col: rgb(204, 204, 204);
 }
 * {
     padding: 0;
@@ -25,27 +21,35 @@ body {
 }
 h1 {
     font-size: 2.5rem;
-    color: white;
+    color: var(--element-col);
     padding: 16px 0px;
 }
 h2 {
     font-size: 1.5rem;
-    color: rgb(74, 74, 74);
+    color: var(--title-col);
 }
 h3, label {
     font-size: 1rem;
-    color: gray;
+    color: var(--desc-col);
 }
 button {
     border: 0;
     border-radius: 4px;
-    padding: 8px 32px;
-    color: white;
+    padding: 8px 16px;
+    color: var(--element-col);
     background-image: linear-gradient(to right, var(--theme-col-a) , var(--theme-col-b));
     flex: 1;
 }
+.read-btn {
+    background-image: linear-gradient(to right, rgb(0,0,0,0), rgb(0,0,0,0));
+    background-color: var(--faint-col);
+    transition: 0.2s;
+}
+.read-btn.true {
+    background-image: linear-gradient(to right, var(--theme-col-a) , var(--theme-col-b));
+}
 form {
-    background-color: white;
+    background-color: var(--element-col);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -53,14 +57,9 @@ form {
     gap: 16px;
     position: relative;
 }
-.close {
-    position: absolute;
-    right: 2px;
-    top: 2px;
-}
 input {
     border: none;
-    color: white;
+    color: var(--element-col);
     background-image: linear-gradient(to right, var(--theme-col-a) , var(--theme-col-b));
     border-radius: 4px;
     padding: 4px 8px;
@@ -75,6 +74,11 @@ input[type=checkbox] {
     height: 0;
     width: 0;
 }
+.close {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
 .read-switch {
     position: relative;
     height: 24px;
@@ -83,7 +87,7 @@ input[type=checkbox] {
     gap: 8px;
 }
 .switch {
-    background-color: rgb(204, 204, 204);
+    background-color: var(--faint-col);
     height: 24px;
     width: 48px;
     border-radius: 4px;
@@ -96,7 +100,7 @@ input[type=checkbox]:checked + .switch {
     content: "";
     height: 20px;
     width: 20px;
-    background-color: white;
+    background-color: var(--element-col);
     border-radius: 4px;
     display: block;
     position: absolute;
@@ -149,25 +153,25 @@ input[type=checkbox]:checked + .switch::after {
     grid-template-columns: repeat(auto-fit, var(--card-w));
     gap: 32px;
 }
-.card, .add-button {
+.card, .add-btn {
     width: var(--card-w);
     height: var(--card-h);
     border-radius: 8px;
 }
-.add-button {
+.add-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    border: 4px dashed white;
-    color: white;
+    border: 4px dashed var(--element-col);
+    color: var(--element-col);
     transition: 0.3s;
 }
-.add-button:hover {
+.add-btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 .card {
-    background-color: white;
+    background-color: var(--element-col);
     padding: 24px 24px;
     display: flex;
     flex-direction: column;
@@ -177,6 +181,17 @@ input[type=checkbox]:checked + .switch::after {
 }
 .footer {
     text-align: center;
-    color: white;
+    color: var(--element-col);
     padding: 24px 0px;
+}
+#numpg {
+    width: 100%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
