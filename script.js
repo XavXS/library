@@ -77,13 +77,30 @@ function deleteCard(button) {
 
 function submitForm() {
     let form = document.forms.newbook;
-    if(!form.reportValidity()) return;
 
-    let title = form.elements.title.value;
-    let author = form.elements.author.value;
-    let numpg = form.elements.numpg.value;
-    let read = form.elements.read.checked;
-    let book = new Book(title, author, numpg, read);
+    let title = form.elements.title;
+    let author = form.elements.author;
+    let numpg = form.elements.numpg;
+
+    title.addEventListener('input', () => { title.setCustomValidity(''); });
+    if(title.validity.valueMissing) title.setCustomValidity('You must enter title!');
+    else title.setCustomValidity('');
+    if(!title.reportValidity()) return;
+
+    author.addEventListener('input', () => { author.setCustomValidity(''); })
+    if(author.validity.valueMissing) author.setCustomValidity('You must enter author!');
+    else author.setCustomValidity('');
+    if(!author.reportValidity()) return;
+
+    numpg.addEventListener('input', () => { numpg.setCustomValidity(''); })
+    if(numpg.validity.valueMissing) numpg.setCustomValidity('You must enter number of pages!');
+    else if(numpg.validity.rangeUnderflow) numpg.setCustomValidity('Number of pages must be greater than 0')
+    else if(numpg.validity.rangeOverflow) numpg.setCustomValidity('Number of pages must be less than 100,000');
+    else numpg.setCustomValidity('');
+    if(!numpg.reportValidity()) return;
+    
+    let read = form.elements.read;
+    let book = new Book(title.value, author.value, numpg.value, read.checked);
 
     addBook(book);
     closeForm();
